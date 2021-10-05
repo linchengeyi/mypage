@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>myPage</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --header-height: 3rem;
+            --font-semi: 600;
+        }
+        :root {
+            --first-color: #4070f4;
+            --second-color: #0e2431;
+        }
+        :root{
+            --body-font: 'Poppins', sans-serif;
+            --big-font-size: 2rem;
+            --h2-font-size: 1.25rem;
+            --normal-font-size: 0.938rem;
+        }
+        @media screen and (min-width: 768px) {
+            :root{
+            --big-font-size: 3.5rem;
+            --h2-font-size: 2rem;
+            --normal-font-size: 1rem;
+            }
+        }
+        :root {
+            --mb-1: 0.5rem;
+            --mb-2: 1rem;
+            --mb-3: 1.5rem;
+            --mb-4: 2rem;
+            --mb-5: 2.5rem;
+            --mb-6: 3rem;
+        }
+        :root {
+            --z-back: -10;
+            --z-normal: 1;
+            --z-tooltip: 10;
+            --z-fixed: 100;
+        }
+        *,::before,::after {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;   /*滑順的捲動*/
+
+        }
+        body {
+            margin: var(--header-height) 0 0 0;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            color: var(--second-color);
+        }
+        h1,h2,p {
+            margin: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .section-title{
+            position: relative;
+            font-size: var(--h2-font-size);
+            color: var(--first-color);
+            margin-top: var(--mb-2);
+            margin-bottom: var(--mb-4);
+            text-align: center;
+        }
+        .section-title::after {
+            position: absolute;
+            content: '';
+            width: 64px;
+            height: 0.18rem;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 2rem;
+            background-color: var(--first-color);
+        }
+        .section {
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .bg-grid {
+            width: 100%;
+            padding: 0 10px 0 10px;
+            display: grid;
+            grid-template-columns: 100%;
+            grid-column-gap: 2rem;
+            width: calc(100% - 2rem);
+            margin-left: var(--mb-2);
+            margin-right: var(--mb-2);
+        }
+        .one-header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: var(--z-fixed);
+            background-color: #fff;
+            box-shadow: 0 1px 4px rgba(146, 161, 176, .15);
+        }
+        .nav {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: var(--font-semi);
+        }
+        @media screen and (max-width: 768px) {
+            .nav__menu {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 80%;
+                height: 100%;
+                padding: 2rem;
+                background-color: var(--second-color);
+                transition: .5s;
+            }
+        }
+        .nav__item {
+            margin-bottom: var(--mb-4);
+        }
+        .nav__link {
+            text-decoration: none;
+            position: relative;
+            color: #fff;
+        }
+        .nav__link:hover {
+            position: relative;
+        }
+        .nav__link:hover::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 0.18rem;
+            left: 0;
+            top: 2rem;
+            background-color: var(--first-color);
+        }
+        .nav__logo {
+            color: var(--second-color);
+        }
+        .nav__toggle {
+            color: var(--second-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .active::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 0.18rem;
+            left: 0;
+            top: 2rem;
+            background-color: var(--first-color);
+        }
+        .show {
+            right: 0;
+        }
+
+        .l-main .home {
+            margin: auto;
+            margin-top: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 95%;
+            height: 100%;
+        }
+        .home__data {
+            left: 0;
+            width: 100%;
+            align-self: center;
+        }
+        .home__title {
+            font-size: var(--big-font-size);
+            margin-bottom: var(--mb-5);
+        }
+        .home__title-color {
+            position: relative;
+            color: var(--first-color);
+        }
+        .home__title-color::before,
+        .home__title-color::after {
+            content: '林承誼';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .home__title-color::before {
+            color: #009cde;
+            animation: home__title 5s ease-in-out infinite;
+        }
+        @keyframes home__title {
+            0%, 100%{
+                transform: translate3d(5px, 4px, -10px);
+            }
+            50%{
+                transform: translate3d(-5px, 4px, -10px);
+            }    
+        }
+        .connection h3 {
+            margin-bottom: 5px;
+        }
+        .myconnection{
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .home__social {
+            display: flex;
+            flex-direction: column;
+        }
+        .home__social-icon {
+            width: max-content;
+            margin-bottom: var(--mb-2);
+            font-size: 1.5rem;
+            color: var(--second-color);
+        }
+        .home__social-icon:hover {
+            color: var(--first-color);
+        }
+        .home__img {
+            height: 100%;
+            object-fit: cover;
+        }
+        .home__img img{
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+        .button {
+            display: inline-block;
+            background-color: var(--first-color);
+            color: #fff;
+            padding: .75rem 2.5rem;
+            font-weight: var(--font-semi);
+            border-radius: .5rem;
+            text-decoration: none;
+        }
+        .button:hover {
+            box-shadow: 0 10px 36px rgba(0,0,0,.15);
+        }
+        
+        .about__container {
+            row-gap: 2rem;
+            text-align: center;
+            padding: 30px;
+        }
+        .about__subtitle {
+            margin-bottom: var(--mb-2);
+        }
+        .about__text{
+            line-height: 27px;
+        }
+        .about__img img {
+            margin: auto;
+            border-radius: 50px;
+        }
+
+        .skills__container {
+            row-gap: 2rem;
+            text-align: center;
+            padding-left: 20px;
+        }
+        .skills__subtitle {
+            margin-bottom: var(--mb-2);
+        }
+        .skills__text {
+            margin-bottom: var(--mb-4);
+        }
+        .skills__data {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: center;
+            font-weight: var(--font-semi);
+            padding: .5rem 1rem;
+            margin-bottom: var(--mb-4);
+            border-radius: .5rem;
+            box-shadow: 0 4px 25px rgba(14, 36, 49, .15);
+            margin-right:1rem ;
+            margin-left:1rem ;
+        }
+        .skills__icon {
+            font-size: 2rem;
+            margin-right: var(--mb-2);
+            color: var(--first-color);
+        }
+        .skills__names {
+            display: flex;
+            align-items: center;
+        }
+        .skills__bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: var(--first-color);
+            height: .5rem;
+            z-index: var(--z-back);
+        }
+        .skills__html {
+            width: 100%;
+        }
+        .skills__css {
+            width: 100%;
+        }
+        .skills__js {
+            width: 100%;
+        }
+        .skills__jq {
+            width: 100%;
+        }
+        .skills__bs {
+            width: 100%;
+        }
+        .skills__php {
+            width: 100%;
+        }
+        .skills__ab {
+            width: 100%;
+        }
+
+        .skills__img {
+            width: 50%;
+            height: 50%;
+            border-radius: .5rem;
+            margin: auto;
+        }
+
+        .work__img {
+            width: 50%;
+            height: 50%;
+            border-radius: .5rem;
+            margin: auto;
+        }
+        .work {
+            text-align: center;
+        }
+        .work__container {
+            row-gap: 2rem;
+        }
+        .work__img {
+            box-shadow: 0 4px 25px rgba(14,36,49,.15);
+            border-radius: .5rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .work__img {
+            transition: 1s;
+            cursor: pointer;
+        }
+        .work__img:hover {
+            transform: scale(1.1);
+        }
+
+        .contact__input {
+            width: 90%;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-semi);
+            padding: 1rem;
+            border-radius: .5rem;
+            border: 1.5px solid var(--second-color);
+            outline: none;
+            margin-bottom: var(--mb-4);
+            /* margin-left: 1rem;
+            margin-right: 1rem; */
+        }
+        .contact__form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .contact__button {
+            display: block;
+            border: none;
+            outline: none;
+            font-size: var(--normal-font-size);
+            cursor: pointer;
+            
+        } 
+
+        .footer{
+            background-color: var(--second-color);
+            color: #fff;
+            text-align: center;
+            font-weight: var(--font-semi);
+            padding: 2rem 0;
+        }
+        .footer__title {
+            font-size: 2rem;
+            margin-bottom: var(--mb-4);
+        }
+        .footer__social {
+            margin-bottom: var(--mb-4);
+        }
+        .footer__icon {
+            font-size: 1.5rem;
+            color: #fff;
+            margin: var(--mb-2);
+        }
+
+        @media screen and (min-width:768px) {
+            body {
+                margin: 0;
+            }
+            .section {
+                padding-top: 4rem;
+                padding-bottom: 3rem;
+            }
+            .section-title {
+                margin-bottom: var(--mb-6);
+            }
+            .section-title::after {
+                width: 80px;
+                top: 3rem;
+            }
+
+            .nav {
+                height: calc(var(--header-height) + 1rem);
+            }
+            .nav__list {
+                display: flex;
+                padding-top: 0;
+            }
+            .nav__item {
+                margin-left: var(--mb-6);
+                margin-bottom: 0;
+            }
+            .nav__toggle {
+                display: none;
+            }
+            .nav__link {
+                color: var(--second-color);
+            }
+            .home {
+                height: 100vh;
+            }
+            .home__data {
+                align-self: flex-end;
+            }
+            .home__social {
+                padding-top: 0;
+                padding-bottom: 2.5rem;
+                flex-direction: row;
+                align-self: flex-end;
+                
+            }
+            .home__social-icon {
+                margin-bottom: 0;
+                margin-right: var(--mb-4);
+            }
+            .home__img {
+                width: 457px;
+                bottom: 15%;
+            }
+
+            .about__container, .skills__container {
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                align-items: center;
+                text-align: initial;
+            }
+            .about__img img {
+                width: 300px;
+            }
+            .work__container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                column-gap: 1rem;
+            }
+            .contact__form {
+                width: 360px;
+            }
+            .contact__container {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        @media screen and (min-wdth: 1024px) {
+            .bg-grid {
+                margin-left: auto;
+                margin-left: auto;
+            }
+        }
+
+
+
+        /* 相關作品 */
+        .card-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            row-gap: 30px;
+        }
+       
+       
+        .card{
+            cursor: pointer;
+            width: 340px;
+            height: 480px;
+        }
+        
+        .front img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .front,.back{
+            width: 340px;
+            height: 480px;
+            overflow: hidden;
+            backface-visibility: hidden;
+            position: absolute;
+            transition: transform .6s linear;
+        }
+        .front{
+            background-color: #f1f1f1;
+            transform: perspective(600px) rotateY(0deg);
+        }
+        .back{
+            display: flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            transform: perspective(600px) rotateY(180deg);
+        }
+        .back-conyent{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .sm{
+            margin: 20px 0;
+        }
+        .sm a{
+            background-color: #c5c5c5;
+            border-radius: 20px;
+            color: #070707;
+            padding: 5px 10px;
+            transition: .4s;
+        }
+        .sm a:hover{
+            background-color: #2c3e50;
+            color: white;
+        }
+        .card:hover .front{
+            transform: perspective(600px) rotateY(-180deg);
+        }
+        .card:hover .back{
+            transform: perspective(600px) rotateY(0deg);
+        }
+        .sm a{
+            text-decoration: none;
+        }
+        .development{
+            margin-top: 50px;
+        }
+        .development-card{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-content: start;
+        }
+        .card-text{
+            width: 30%;
+            padding: 0 20px 0 20px;
+            border:  .5px solid rgb(190, 190, 190);
+            transition: .5s;
+        }
+        .card-text:hover{
+            box-shadow: 10px 8px 5px rgb(224, 224, 224);
+        }
+        .card-text .title{
+            margin:10px;
+            border-bottom: 2px solid #39c8d0;
+        }
+        .card-list{
+            margin:10px;
+        }
+        @media screen and (max-width:375px) {
+            .development-card{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .card-text{
+                width: 100%;
+                padding: 0 20px 0 20px;
+                border:  .5px solid rgb(190, 190, 190);
+                transition: .5s;
+            }
+            .home__img{
+                display: none;
+            }
+        }
+        @media screen and (max-width:770px) {
+            .development-card{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .card-text{
+                width: 100%;
+                padding: 0 20px 0 20px;
+                border:  .5px solid rgb(190, 190, 190);
+                transition: .5s;
+            }
+            .home__img{
+                display: none;
+            }
+        }
+        .object-pic{
+            width: 70%;
+            height: 70%;
+            border-radius: 40px;
+        }
+
+         /* loding -------------------------------------------------------*/
+        .skContainer {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #222;
+        }
+        .sk-folding-cube {
+            margin: 20px auto;
+            width: 60px;
+            height: 60px;
+            position: relative;
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+            background-color: rgb(154, 165, 161);
+        }
+
+        .sk-folding-cube .sk-cube {
+            float: left;
+            width: 50%;
+            height: 50%;
+            position: relative;
+            -webkit-transform: scale(1.1);
+             -ms-transform: scale(1.1);
+            transform: scale(1.1); 
+        }
+        .sk-folding-cube .sk-cube:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #222;
+            -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+            animation: sk-foldCubeAngle 2.4s infinite linear both;
+            -webkit-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+        .sk-folding-cube .sk-cube2 {
+            -webkit-transform: scale(1.1) rotateZ(90deg);
+            transform: scale(1.1) rotateZ(90deg);
+        }
+        .sk-folding-cube .sk-cube3 {
+            -webkit-transform: scale(1.1) rotateZ(180deg);
+            transform: scale(1.1) rotateZ(180deg);
+        }
+        .sk-folding-cube .sk-cube4 {
+            -webkit-transform: scale(1.1) rotateZ(270deg);
+            transform: scale(1.1) rotateZ(270deg);
+        }
+        .sk-folding-cube .sk-cube2:before {
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+        .sk-folding-cube .sk-cube3:before {
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s; 
+        }
+        .sk-folding-cube .sk-cube4:before {
+            -webkit-animation-delay: 0.9s;
+            animation-delay: 0.9s;
+        }
+        @-webkit-keyframes sk-foldCubeAngle {
+          0%, 10% {
+            -webkit-transform: perspective(140px) rotateX(-180deg);
+                    transform: perspective(140px) rotateX(-180deg);
+            opacity: 0; 
+          } 25%, 75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
+                    transform: perspective(140px) rotateX(0deg);
+            opacity: 1; 
+          } 90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+                    transform: perspective(140px) rotateY(180deg);
+            opacity: 0; 
+          } 
+        }
+
+        @keyframes sk-foldCubeAngle {
+          0%, 10% {
+            -webkit-transform: perspective(140px) rotateX(-180deg);
+                    transform: perspective(140px) rotateX(-180deg);
+            opacity: 0; 
+          } 25%, 75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
+                    transform: perspective(140px) rotateX(0deg);
+            opacity: 1; 
+          } 90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+                    transform: perspective(140px) rotateY(180deg);
+            opacity: 0; 
+          }
+        }
+    </style>
+</head>
+<body>
+    <header class="one-header">
+        <nav class="nav bg-grid">
+            <div>
+                <a href="#" class="nav__logo">林承誼</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active"data-aos="fade-up"data-aos-duration="2000">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link"data-aos="fade-up"data-aos-duration="2000">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link"data-aos="fade-up"data-aos-duration="2000">Skills</a></li>
+                    <li class="nav__item"><a href="#portfolio" class="nav__link"data-aos="fade-up"data-aos-duration="2000">Portfolio</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link"data-aos="fade-up"data-aos-duration="2000">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <section class="home bg-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title" data-aos="fade-right" data-aos-duration="3000">您好, <br>我是 <span class="home__title-color">林承誼</span><br> 衝勁、積極、熱情、保持好奇</h1>
+                <!-- <a href="" class="button">Contact</a> -->
+                <!-- 聯絡方式 -->
+                <div class="connection">
+                    <h3>聯絡資訊 - </h3>
+                    <div class="myconnection">
+                        <i class='bx bx-user'> 姓名: 林承誼</i>
+                    </div>
+                    <div class="myconnection">
+                        <i class='bx bx-phone-call'> 手機: 0963266021</i>
+                    </div>
+                    <div class="myconnection">
+                        <i class='bx bx-mail-send'> Email: perry564408020@gmail.com</i>
+                    </div>
+                    <div class="myconnection">
+                        <i class='bx bx-time-five'> 方便聯絡時間: 星期一至星期五的13:00-19:00</i>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- <div class="home__social">
+                <a href="#" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+                <a href="#" class="home__social-icon"><i class='bx bxl-behance'></i></a>
+                <a href="#" class="home__social-icon"><i class='bx bxl-github' ></i></a>
+            </div> -->
+
+            <div class="home__img">
+                <img src="./image/封面照2.jpeg" alt=""data-aos="fade-lift"data-aos-duration="3000">
+            </div>
+        </section>
+
+        <section class="about senction" id="about">
+            <h2 class="section-title foo">About</h2>
+
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="./image/5CD318AB-0E02-4793-98CA-3B61008FF5BD_1_105_c.jpeg" alt=""data-aos="flip-left">
+                </div>
+
+                <div>
+                    <p class="about__text">
+                        於今年五月通過資策會前端班入學考試，歷經為期半年的課程，雖常被課程及個人和團體專題作品趕著跑，但我仍保持初衷以及對程式的熱情加上自己的人格特質外向，善於溝通，對程式抱有很大的熱情，樂於學習與解決問題，雖然不能算是一路完美但絕對能稱得上勇敢地展現也完美的發揮自我的抗壓力及對網頁畫面的堅持。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="skill section" id="skills">
+            <h2 class="section-title">相關技能</h2>
+
+            <div class="skills__container bd-grid">
+                <div>
+                    <h2 class="skills__container bd-grid"></h2>
+                    <p class="skills__text"></p>
+                    
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-html5 skills__icon' ></i>
+                            <span class="skills__name">HTML5</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__html"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-css3 skills__icon' ></i>
+                            <span class="skills__name">CSS3</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__css"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-javascript skills__icon' ></i>
+                            <span class="skills__name">JAVASCRIPT</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__js"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-jquery skills__icon' ></i>
+                            <span class="skills__name">JQuery</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__jq"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-bootstrap skills__icon' ></i>
+                            <span class="skills__name">BOOTSTRAP</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__bs"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-vuejs skills__icon'></i>
+                            <span class="skills__name ">Vue.js</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__bs"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-php skills__php '></i>
+                            <span class="skills__name">PHP</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__php"></div>
+                    </div>
+                    <div class="skills__data"data-aos="zoom-in">
+                        <div class="skills__names">
+                            <i class='bx bxl-adobe skills__icon'></i>
+                            <span class="skills__name">ADOBE</span>
+                        </div>
+
+                        <div>
+                            <span class="skills__percentage"></span>
+                        </div>
+
+                        <div class="skills__bar skills__ab"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <img class="skills__img" src="./image/介紹照.jpeg" alt="">
+                </div>
+            </div>
+
+            <div class="development">
+                <div class="development-card">
+                    <div class="card-text">
+                        <h3 class="title">Web Design</h3>
+                        <p class="card-list">- 熟悉 熟悉 HTML5 / CSS3 網站設計 </p>
+                        <p class="card-list">- 手刻 RWD 響應式網站 </p>
+                        <p class="card-list">- 熟悉 網頁版面切版</p>
+                        <p class="card-list">- 熟悉 RWD響應式網頁設計</p>
+                        <p class="card-list">- CSS Modules / CSS-in-JS</p>
+                    </div>
+                    <div class="card-text">
+                        <h3 class="title">Web Layout</h3>
+                        <p class="card-list">- 具 Bootstrap 使用經驗 </p>
+                        <p class="card-list">- 能依照設計稿手刻頁面版型</p>
+                        <p class="card-list">- 使用設計相關工具，Visual Studio code </p>
+                    </div>
+                    <div class="card-text">
+                        <h3 class="title">Front End</h3>
+                        <p class="card-list">- Vue.js</p>
+                        <p class="card-list">- JavaScript ES5 / ES6+ </p>
+                        <p class="card-list">- JSON 與 RESTFUL API 串接</p>
+                        <p class="card-list">- 熟悉 jQuery</p>
+                        <p class="card-list">- ajax實現單頁跳轉</p>
+                        <p class="card-list">- 善用 jQuery Plugin 整合第三方插件動畫效果</p>
+                        <p class="card-list">- React Framework</p>
+                    </div>
+                    <div class="card-text">
+                        <h3 class="title">Vue.js</h3>
+                        <p class="card-list">- 熟悉 V- 指令</p>
+                        <p class="card-list">- Vue-Cli 建置開發環境</p>
+                        <p class="card-list">- 使用 Vue-router 路由配置</p>
+                    </div>
+                    <div class="card-text">
+                        <h3 class="title">Back End</h3>
+                        <p class="card-list">略懂後端技術與ML等相關知識。</p>
+                        <p class="card-list">- Node.js</p>
+                        <p class="card-list">- PHP</p>
+                        <p class="card-list">- MySQL資料庫建置</p>
+                    </div>
+                    <div class="card-text">
+                        <h3 class="title">工具軟體</h3>
+                        <p class="card-list">Postman ,Photoshop, Illustrator, Adobe XD</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section" id="portfolio">
+            <h2 class="section-title">相關作品</h2>
+
+            <!-- <div class="contact__container bd-grid">
+                <form action="" class="contact__form">
+                    <input type="text" placeholder="Name" class="contact__input">
+                    <input type="mail" placeholder="Email" class="contact__input">
+                    <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                    
+                    <input type="button" value="Enviar" class="contact__button button">
+                </form>
+            </div> -->
+
+            <div class="card-container">
+                <div class="card middle">
+                    <div class="front">
+                        <img src="./image/湖人網站.png" alt="">
+                    </div>
+                    <div class="back">
+                        <div class="back-conyent middle">
+                            <h2>作品一</h2>
+                            <div>NBA湖人隊介紹網頁</div>
+                            <div class="sm">
+                                <a href="https://2am3xpo62lwqwppde79maq-on.drv.tw/pages-demo/topic.html">點我查看網站</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card middle">
+                    <div class="front">
+                        <img src="./image/仿網.png" alt="">
+                    </div>
+                    <div class="back">
+                        <div class="back-conyent middle">
+                            <h2>作品二</h2>
+                            <div>模仿某寵物電商網頁</div>
+                            <div class="sm">
+                                <a href="https://2am3xpo62lwqwppde79maq-on.drv.tw/%E4%BB%BF%E7%B6%B2%20(%E7%B4%94%E6%89%8B%E5%88%BB)/inde.html#">點我查看網站</a>
+                            </div>
+                            <div style="margin-top: 10px;">模仿電商網頁範本</div>
+                            <div class="sm">
+                                <a href="https://shop.lyrasoft.net/">點我查看網站</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card middle">
+                    <div class="front">
+                        <img src="./image/期末專題.png" alt="">
+                    </div>
+                    <div class="back">
+                        <div class="back-conyent middle">
+                            <h2>作品三</h2>
+                            <div>期末團體專案製作</div>
+                            <img class="object-pic" src="./image/使用技術.png" alt="">
+                            <div class="sm">
+                                <!-- <a href="https://2am3xpo62lwqwppde79maq-on.drv.tw/%E4%BB%BF%E7%B6%B2%20(%E7%B4%94%E6%89%8B%E5%88%BB)/inde.html#">點我查看網站</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card middle">
+                    <div class="front">
+                        <img src="./image/截圖 2021-10-04 下午2.18.31.png" alt="">
+                    </div>
+                    <div class="back">
+                        <div class="back-conyent middle">
+                            <h2>作品四</h2>
+                            <div>電商app設計</div>
+                            <div class="sm">
+                                <a href="https://www.behance.net/gallery/128628593/XDapp">點我查看網站</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card middle">
+                    <div class="front">
+                        <img src="./image/簡易記事本.png" alt="">
+                    </div>
+                    <div class="back">
+                        <div class="back-conyent middle">
+                            <h2>作品五</h2>
+                            <div>Vue簡易記事本</div>
+                            <div class="sm">
+                                <a href="https://2am3xpo62lwqwppde79maq-on.drv.tw/vue%E7%B0%A1%E6%98%93%E8%A8%98%E4%BA%8B%E6%9C%AC/vue02notes11-2.html">點我查看網站</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- <section class="work section" id="work">
+            <h2 class="section-title">工作</h2>
+
+            <div class="work__container bd-grid">
+                <div class="work__img"data-aos="flip-left"data-aos-duration="2000">
+                    <img src="./image/介紹照.jpeg" alt="">
+                </div>
+                <div class="work__img"data-aos="flip-left"data-aos-duration="2000">
+                    <img src="./image/介紹照.jpeg" alt="">
+                </div>
+                <div class="work__img"data-aos="flip-left"data-aos-duration="2000">
+                    <img src="./image/介紹照.jpeg" alt="">
+                </div>
+                <div class="work__img"data-aos="flip-left"data-aos-duration="2000">
+                    <img src="./image/介紹照.jpeg" alt="">
+                </div>
+                <div class="work__img"data-aos="flip-left"data-aos-duration="2000">
+                    <img src="./image/介紹照.jpeg" alt="">
+                </div>
+                <div class="work__img"data-aos="flip-left"data-aos-duration="2000">
+                    <img src="./image/介紹照.jpeg" alt="">
+                </div>
+            </div>
+        </section> -->
+
+        
+    </main>
+
+     <!-- loding -->
+     <div class="skContainer">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <p class="footer__title">關於林承誼</p>
+
+        <div class="footer__social">
+            <a href="" class="footer__icon"><i class='bx bxl-facebook-square' ></i></a>
+            <a href="" class="footer__icon"><i class='bx bxl-instagram-alt' ></i></a>
+        </div>
+        <p> &#169; 2021 copyright all right reserved</p>
+    </footer>
+
+
+
+
+    <script>
+
+
+ 
+        const showMenu = (toggleId, navId) => {
+            const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId)
+
+            if(toggle && nav){
+                toggle.addEventListener('click', () => {
+                    nav.classList.toggle('show')
+                    console.log('ok');
+                })
+            }
+        }
+        showMenu('nav-toggle', 'nav-menu')
+                                
+                                //回傳陣列
+        const navLink = document.querySelectorAll('.nav__link')
+        
+        function linkAction(){
+                           //n為參數，而參數只有一個時可省略「（）」 
+            navLink.forEach(n => n.classList.remove('active'))
+            //此this指被點擊到的那個navLink
+            this.classList.add('active')
+            console.log(this);
+
+            const navMenu = document.getElementById('nav-menu')
+            navMenu.classList.remove('show')
+        }
+
+        navLink.forEach(n => n.addEventListener('click', linkAction))
+
+        AOS.init();
+
+        var fooReveal = {
+            delay    : 500,
+            distance : '10px',
+            easing   : 'ease-in-out',
+            rotate   : { z: 10 },
+            scale    : 1.1
+        };
+ 
+        window.sr = ScrollReveal()
+            .reveal( '.foo', fooReveal )
+            // .reveal( '#chocolate', { delay: 100, scale: 1 } );
+
+        //   loding消失時間
+        setTimeout(function(){
+                $('.skContainer').fadeOut();
+            }, 1000)
+    </script>
+</body>
+</html>
